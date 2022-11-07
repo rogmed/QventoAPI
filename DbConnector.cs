@@ -2,6 +2,7 @@
 {
     public interface IDbConnector {
         public Qvento FindQvento(string qventoId);
+        public List<Qvento> FindAll();
     }
     public class MockDbConnector : IDbConnector
     {
@@ -63,6 +64,11 @@
             }
 
             return qvento;
+        }
+
+        public List<Qvento> FindAll()
+        {
+            return qventos;
         }
     }
 }

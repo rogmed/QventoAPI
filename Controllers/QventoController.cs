@@ -31,5 +31,16 @@ namespace QventoAPI.Controllers
 
             return Ok(qvento);
         }
+
+        [HttpGet("all-qventos")]
+        public ActionResult<List<Qvento>> GetFakeQventos()
+        {
+            var allQventos = dBconnector.FindAll();
+
+            if (allQventos == null)
+                return StatusCode(StatusCodes.Status204NoContent);
+
+            return Ok(allQventos);
+        }
     }
 }
