@@ -22,14 +22,11 @@ namespace QventoAPI.Controllers
 
 
         [HttpGet("qvento/{qventoId}")]
-        public ActionResult<Qvento> GetQvento(string qventoId)
+        public async Task<Qvento> GetQvento(string qventoId)
         {
-            Qvento qvento = dBconnector.FindQvento(qventoId);
+            var result = await Task.FromResult(dBconnector.FindQvento(qventoId));
 
-            if (qvento == null)
-                return StatusCode(StatusCodes.Status204NoContent);
-
-            return Ok(qvento);
+            return result;
         }
 
         [HttpGet("all-qventos")]
