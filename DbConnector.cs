@@ -17,7 +17,7 @@
                 "tocaba el saxofón detrás del palenque de paja.",
                 Location = "Calle de la Piruleta 123",
                 DateOfQvento = new DateTime(2022, 12, 22),
-                DateCreated = DateTime.Now,
+                DateCreated = DateTime.Now.Date,
                 Status = "A"
             },
 
@@ -32,7 +32,7 @@
                 "zafios, con orejas kilométricas y uñas de gavilán.  ",
                 Location = "Calle Falsa 456",
                 DateOfQvento = new DateTime(2023, 01, 15),
-                DateCreated = DateTime.Now,
+                DateCreated = DateTime.Now.Date,
                 Status = "C"
             },
 
