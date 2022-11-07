@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QventoAPI", "QventoAPI.csproj", "{AD4FCE1C-07E0-4378-A1EC-BE09E028156E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestQventoAPI", "..\TestQventoAPI\TestQventoAPI.csproj", "{5A4FF6FE-2CC1-44A3-BA2B-66B6BE235171}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AD4FCE1C-07E0-4378-A1EC-BE09E028156E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD4FCE1C-07E0-4378-A1EC-BE09E028156E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD4FCE1C-07E0-4378-A1EC-BE09E028156E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A4FF6FE-2CC1-44A3-BA2B-66B6BE235171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4FF6FE-2CC1-44A3-BA2B-66B6BE235171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4FF6FE-2CC1-44A3-BA2B-66B6BE235171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4FF6FE-2CC1-44A3-BA2B-66B6BE235171}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
