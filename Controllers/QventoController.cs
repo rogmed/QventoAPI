@@ -8,10 +8,10 @@ namespace QventoAPI.Controllers
     {
         IDbConnector dBconnector = new MockDbConnector();
 
-        string okMessage = "200 OK \n" +
+        string okMessage = "200 OK \n\n" +
             "Para obtener Qventos usad la URL https://qvento.azurewebsites.net/qvento/{id}\n" +
-            "Por ejemplo, poniendo https://qvento.azurewebsites.net/qvento/1 obtiene el Qvento\n" +
-            "con ID = 1. Ahora mismo hay tres de prueba (0, 1 y 2), y poner otro número o letras da un error.";
+            "Por ejemplo, poniendo https://qvento.azurewebsites.net/qvento/1 obtiene el Qvento\n con ID = 1.\n" +
+            "Ahora mismo hay tres de prueba (0, 1 y 2), y poner otro número o letras da un error.";
 
 
         [HttpGet("")]
