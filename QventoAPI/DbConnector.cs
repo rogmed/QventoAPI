@@ -1,9 +1,7 @@
-﻿using QventoAPI.Data;
-
-namespace QventoAPI
+﻿namespace QventoAPI
 {
     public interface IDbConnector {
-        public Qvento FindQvento(int qventoId);
+        public Qvento FindQvento(string qventoId);
         public List<Qvento> FindAll();
     }
     public class MockDbConnector : IDbConnector
@@ -12,52 +10,59 @@ namespace QventoAPI
         {
             new Qvento()
             {
-                QventoId = 0,
-                CreatedBy = 0,
+                QventoId = "0",
+                CreatedBy = "0",
                 Title = "Qvento de prueba activo",
                 Description = "Esta es la descripción del Qvento de prueba. " +
                 "El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña " +
                 "tocaba el saxofón detrás del palenque de paja.",
-                Address = "Calle de la Piruleta 123",
-                DateQvento = new DateTime(2022, 12, 22),
+                Location = "Calle de la Piruleta 123",
+                DateOfQvento = new DateTime(2022, 12, 22),
                 DateCreated = DateTime.Now.Date,
                 Status = "A"
             },
 
             new Qvento()
             {
-                QventoId = 1,
-                CreatedBy = 1,
+                QventoId = "1",
+                CreatedBy = "1",
                 Title = "Qvento de prueba cancelado",
                 Description = "Le gustaba cenar un exquisito sándwich de jamón con " +
                 "zumo de piña y vodka fría. El viejo Señor Gómez pedía queso, kiwi " +
                 "y habas, pero le ha tocado un saxofón. Exhíbanse politiquillos " +
                 "zafios, con orejas kilométricas y uñas de gavilán.  ",
-                Address = "Calle Falsa 456",
-                DateQvento = new DateTime(2023, 01, 15),
+                Location = "Calle Falsa 456",
+                DateOfQvento = new DateTime(2023, 01, 15),
                 DateCreated = DateTime.Now.Date,
                 Status = "C"
             },
 
             new Qvento()
             {
-                QventoId = 2,
-                CreatedBy = 2,
+                QventoId = "2",
+                CreatedBy = "2",
                 Title = "Qvento de prueba finalizado",
                 Description = "Le gustaba cenar un exquisito sándwich de jamón con " +
                 "zumo de piña y vodka fría. El viejo Señor Gómez pedía queso, kiwi " +
                 "y habas, pero le ha tocado un saxofón. Exhíbanse politiquillos " +
                 "zafios, con orejas kilométricas y uñas de gavilán.  ",
-                Address = "Avenida del Pasado -1",
-                DateQvento = new DateTime(2020, 09, 15),
+                Location = "Avenida del Pasado -1",
+                DateOfQvento = new DateTime(2020, 09, 15),
                 DateCreated = new DateTime(2020, 08, 01),
                 Status = "F"
             }
         };
 
-        public Qvento FindQvento(int qventoId)
+        public Qvento FindQvento(string qventoId)
         {
-            Qvento qvento = qventos.Find(x => x.QventoId.Equals(qventoId));
+            int parsedQventoId;
+            Qvento? qvento = null;
+
+            if (int.TryParse(qventoId, out parsedQventoId))
+            {
+                qvento = qventos.Find(x => x.QventoId.Equals(qventoId));
+            }
+
             return qvento;
         }
 
