@@ -30,7 +30,7 @@ namespace QventoAPI.Controllers
             return result;
         }
 
-        [HttpGet("fake/qvento/")]
+        [HttpGet("all-qventos")]
         public ActionResult<List<Qvento>> GetFakeQventos()
         {
             var allQventos = dBconnector.FindAll();
@@ -41,7 +41,7 @@ namespace QventoAPI.Controllers
             return Ok(allQventos);
         }
 
-        [HttpGet("qvento/")]
+        [HttpGet("qvento")]
         public ActionResult<List<Qvento>> GetQventos()
         {
             QventodbContext context = new QventodbContext();
