@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using QventoAPI.Data;
 
 namespace QventoAPI.Controllers
 {
@@ -22,7 +23,7 @@ namespace QventoAPI.Controllers
 
 
         [HttpGet("qvento/{qventoId}")]
-        public async Task<Qvento> GetQvento(string qventoId)
+        public async Task<Qvento> GetQvento(int qventoId)
         {
             var result = await Task.FromResult(dBconnector.FindQvento(qventoId));
 
@@ -33,6 +34,18 @@ namespace QventoAPI.Controllers
         public ActionResult<List<Qvento>> GetFakeQventos()
         {
             var allQventos = dBconnector.FindAll();
+
+            if (allQventos == null)
+                return StatusCode(StatusCodes.Status204NoContent);
+
+            return Ok(allQventos);
+        }
+
+        [HttpGet("qvento")]
+        public ActionResult<List<Qvento>> GetQventos()
+        {
+            QventodbContext context = new QventodbContext();
+            var allQventos = context.Qventos;
 
             if (allQventos == null)
                 return StatusCode(StatusCodes.Status204NoContent);
