@@ -1,7 +1,9 @@
-﻿namespace QventoAPI
+﻿using QventoAPI.Data;
+
+namespace QventoAPI
 {
     public interface IDbConnector {
-        public Qvento FindQvento(string qventoId);
+        public Qvento? FindQvento(int qventoId);
         public List<Qvento> FindAll();
     }
     public class MockDbConnector : IDbConnector
@@ -10,8 +12,8 @@
         {
             new Qvento()
             {
-                QventoId = "0",
-                CreatedBy = "0",
+                QventoId = 0,
+                CreatedBy = 0,
                 Title = "Qvento de prueba activo",
                 Description = "Esta es la descripción del Qvento de prueba. " +
                 "El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña " +
@@ -24,8 +26,8 @@
 
             new Qvento()
             {
-                QventoId = "1",
-                CreatedBy = "1",
+                QventoId = 1,
+                CreatedBy = 1,
                 Title = "Qvento de prueba cancelado",
                 Description = "Le gustaba cenar un exquisito sándwich de jamón con " +
                 "zumo de piña y vodka fría. El viejo Señor Gómez pedía queso, kiwi " +
@@ -39,8 +41,8 @@
 
             new Qvento()
             {
-                QventoId = "2",
-                CreatedBy = "2",
+                QventoId = 2,
+                CreatedBy = 2,
                 Title = "Qvento de prueba finalizado",
                 Description = "Le gustaba cenar un exquisito sándwich de jamón con " +
                 "zumo de piña y vodka fría. El viejo Señor Gómez pedía queso, kiwi " +
@@ -53,16 +55,10 @@
             }
         };
 
-        public Qvento FindQvento(string qventoId)
+        public Qvento? FindQvento(int qventoId)
         {
-            int parsedQventoId;
-            Qvento? qvento = null;
-
-            if (int.TryParse(qventoId, out parsedQventoId))
-            {
-                qvento = qventos.Find(x => x.QventoId.Equals(qventoId));
-            }
-
+            Qvento qvento = qventos.Find(x => x.QventoId.Equals(qventoId));
+            
             return qvento;
         }
 
