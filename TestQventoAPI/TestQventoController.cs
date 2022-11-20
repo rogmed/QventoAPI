@@ -13,7 +13,7 @@ namespace TestQventoAPI
         {
             var controller = new QventoController();
 
-            var qvento = controller.GetQvento("1").Result;
+            var qvento = controller.GetQvento(1).Result;
 
             var actualTitle = qvento.Title;
             var expectedTitle = "Qvento de prueba cancelado";
