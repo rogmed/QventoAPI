@@ -1,4 +1,5 @@
 using QventoAPI;
+using QventoAPI.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,14 +14,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-    
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Authorization for swagger in production
+app.UseSwaggerAuthorized();
+
+// Wrap this in app.Environment.IsDevelopment() if only for dev
+app.UseDeveloperExceptionPage();
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 
