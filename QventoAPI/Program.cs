@@ -1,4 +1,9 @@
+using QventoAPI;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Vault
+Vault.GetConnectionString();
 
 // Add services to the container.
 
