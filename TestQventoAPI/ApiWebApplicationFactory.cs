@@ -13,7 +13,10 @@ namespace TestQventoAPI
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            Environment.SetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING", Vault.connectionString);
+            var task = Vault.GetConnectionString();
+            task.Wait();
+
+            Environment.SetEnvironmentVariable("SQLAZURECONNSTR_QVENTODB", Vault.connectionString);
 
             builder.ConfigureAppConfiguration(config => { });
 
