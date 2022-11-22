@@ -1,6 +1,8 @@
 using Newtonsoft.Json;
 using QventoAPI;
 using QventoAPI.Controllers;
+using QventoAPI.Data;
+using System.Net.Http.Json;
 
 namespace TestQventoAPI
 
@@ -8,17 +10,21 @@ namespace TestQventoAPI
     [TestClass]
     public class TestQventoController
     {
-        [TestMethod]
-        public void TestFindQvento()
+        private ApiWebApplicationFactory _api;
+        private HttpClient _client;
+
+        public TestQventoController()
         {
-            var controller = new QventoController();
+            _api = new ApiWebApplicationFactory();
+            _client = _api.CreateClient();
+        }
 
-            var qvento = controller.GetQvento(1).Result;
+        [TestMethod]
+        public async Task TestFindQvento()
+        {
+            var qventos = await _client.GetFromJsonAsync<List<Qvento>>("/all-qventos");
 
-            var actualTitle = qvento.Title;
-            var expectedTitle = "Qvento de prueba cancelado";
-
-            Assert.AreEqual(expectedTitle, actualTitle);
+            Assert.IsNotNull(qventos);
         }
     }
 }
