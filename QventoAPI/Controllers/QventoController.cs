@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QventoAPI.Data;
 
 namespace QventoAPI.Controllers
@@ -26,7 +27,7 @@ namespace QventoAPI.Controllers
         public ActionResult<Qvento> GetQvento(int qventoId)
         {
             QventodbContext context = new QventodbContext();
-            var qvento = context.Qventos.FirstOrDefault(x => x.QventoId == qventoId);
+            var qvento = context.Qventos.FirstOrDefaultAsync(x => x.QventoId == qventoId);
 
             if (qvento == null)
                 return NoContent();
