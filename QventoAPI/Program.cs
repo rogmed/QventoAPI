@@ -1,12 +1,10 @@
-using Microsoft.EntityFrameworkCore;
 using QventoAPI;
-using QventoAPI.Data;
 using QventoAPI.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Vault
-var getConnectionString = Vault.GetConnectionString();
+Vault.GetConnectionString();
 
 // Add services to the container.
 
@@ -31,7 +29,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-getConnectionString.Wait();
 
 app.Run();
