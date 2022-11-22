@@ -5,7 +5,6 @@ using System.Net.Http.Json;
 namespace TestQventoAPI
 {
     [TestClass]
-    [TestCategory("IgnoreOnBuild")]
     public class TestQventoController
     {
         private ApiWebApplicationFactory _api;

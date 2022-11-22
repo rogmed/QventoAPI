@@ -14,10 +14,10 @@ namespace TestQventoAPI
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            var task = Vault.GetConnectionString();
-            task.Wait();
+            //var task = Vault.GetConnectionString();
+            //task.Wait();
 
-            Environment.SetEnvironmentVariable("SQLAZURECONNSTR_QVENTODB", Vault.connectionString);
+            Environment.SetEnvironmentVariable("SQLAZURECONNSTR_QVENTODB", "Server=tcp:qvento-db.database.windows.net,1433;Initial Catalog=qventodb;Persist Security Info=False;User ID=rogelio11903@linkiafp.es;Password=lTitojik18++;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication='Active Directory Password';");
 
             builder.ConfigureAppConfiguration(config => { });
 
