@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QventoAPI.Data;
 
 namespace QventoAPI.Controllers
@@ -8,36 +9,39 @@ namespace QventoAPI.Controllers
     public class QventoController : ControllerBase
     {
         IDbConnector dBconnector = new MockDbConnector();
+        QventodbContext context = new QventodbContext();
 
-        string okMessage = "200 OK \n\n" +
-            "Para obtener Qventos usad la URL https://qvento.azurewebsites.net/qvento/{id}\n" +
-            "Por ejemplo, poniendo https://qvento.azurewebsites.net/qvento/1 obtiene el Qvento\n con ID = 1.\n" +
-            "Ahora mismo hay tres de prueba (0, 1 y 2), y poner otro número o letras da un error.";
+        
 
 
         [HttpGet("")]
         public ActionResult<int> GetOk()
         {
+            string okMessage = "200 OK \n\n" +
+            "Github: https://github.com/rogmed/QventoAPI\n" +
+            "Swagger: https://qvento.azurewebsites.net/swagger/index.html\n";
             return Ok(okMessage);
         }
 
 
         [HttpGet("qvento/{qventoId}")]
-        public async Task<Qvento> GetQvento(int qventoId)
+        public ActionResult<Qvento> GetQvento(int qventoId)
         {
-            var result = await Task.FromResult(dBconnector.FindQvento(qventoId));
+            var qvento = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
 
-            return result;
+            if (qvento == null)
+                NoContent();
+
+            return Ok(qvento);
         }
 
         [HttpGet("qvento")]
         public ActionResult<List<Qvento>> GetQventos()
         {
-            QventodbContext context = new QventodbContext();
             var allQventos = context.Qventos;
 
             if (allQventos == null)
-                return StatusCode(StatusCodes.Status204NoContent);
+                NoContent();
 
             return Ok(allQventos);
         }
@@ -48,7 +52,7 @@ namespace QventoAPI.Controllers
             var allQventos = dBconnector.FindAll();
 
             if (allQventos == null)
-                return StatusCode(StatusCodes.Status204NoContent);
+                return NoContent();
 
             return Ok(allQventos);
         }
