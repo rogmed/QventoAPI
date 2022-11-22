@@ -1,4 +1,5 @@
-﻿using Azure.Identity;
+﻿using System;
+using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 
 namespace QventoAPI
@@ -16,5 +17,6 @@ namespace QventoAPI
 
             connectionString = secret.Value.Value;
         }
+
     }
 }

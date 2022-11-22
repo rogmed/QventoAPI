@@ -27,8 +27,3 @@ jobs:
         
       - name: Test with the dotnet CLI
         run: dotnet test
-        with:
-          app-name: 'qvento'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_97CF198A6FFC443BA8364ABA90FA7EA6 }}
-          package: .
