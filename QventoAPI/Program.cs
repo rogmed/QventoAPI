@@ -4,7 +4,7 @@ using QventoAPI.Swagger;
 var builder = WebApplication.CreateBuilder(args);
 
 // Vault
-Vault.GetConnectionString();
+var vaultTask = Vault.GetConnectionString();
 
 // Add services to the container.
 
@@ -30,4 +30,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+vaultTask.Wait();
+
 app.Run();
+
+public partial class Program { }
