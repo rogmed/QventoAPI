@@ -5,12 +5,12 @@ using System.Net.Http.Json;
 namespace TestQventoAPI.IntegrationTests
 {
     [TestClass]
-    public class TestQventoController
+    public class GetQvento
     {
         private ApiWebApplicationFactory _api;
         private HttpClient _client;
 
-        public TestQventoController()
+        public GetQvento()
         {
             _api = new ApiWebApplicationFactory();
             _client = _api.CreateClient();
