@@ -23,11 +23,15 @@ namespace QventoAPI.Controllers
 
 
         [HttpGet("qvento/{qventoId}")]
-        public async Task<Qvento> GetQvento(int qventoId)
+        public ActionResult<Qvento> GetQvento(int qventoId)
         {
-            var result = await Task.FromResult(dBconnector.FindQvento(qventoId));
+            QventodbContext context = new QventodbContext();
+            var qvento = context.Qventos.FirstOrDefault(x => x.QventoId == qventoId);
 
-            return result;
+            if (qvento == null)
+                return NoContent();
+
+            return Ok(qvento);
         }
 
         [HttpGet("qvento")]
@@ -37,7 +41,7 @@ namespace QventoAPI.Controllers
             var allQventos = context.Qventos;
 
             if (allQventos == null)
-                return StatusCode(StatusCodes.Status204NoContent);
+                return NoContent();
 
             return Ok(allQventos);
         }
@@ -45,12 +49,12 @@ namespace QventoAPI.Controllers
         [HttpGet("all-qventos")]
         public ActionResult<List<Qvento>> GetFakeQventos()
         {
-            var allQventos = dBconnector.FindAll();
+            var allFakeQventos = dBconnector.FindAll();
 
-            if (allQventos == null)
-                return StatusCode(StatusCodes.Status204NoContent);
+            if (allFakeQventos == null)
+                return NoContent();
 
-            return Ok(allQventos);
+            return Ok(allFakeQventos);
         }
     }
 }
