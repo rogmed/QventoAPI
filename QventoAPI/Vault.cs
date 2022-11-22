@@ -17,6 +17,5 @@ namespace QventoAPI
 
             connectionString = secret.Value.Value;
         }
-
     }
 }
