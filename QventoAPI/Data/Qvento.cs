@@ -16,7 +16,7 @@ public partial class Qvento
 
     public DateTime DateCreated { get; set; }
 
-    [RegularExpression(@"^ACF$",
+    [RegularExpression("[ACF]",
          ErrorMessage = "Status must be A (Active), C (Cancelled) or F (Finished)")]
     public string Status { get; set; } = null!;
 
@@ -27,4 +27,6 @@ public partial class Qvento
     public virtual User CreatedByNavigation { get; set; } = null!;
 
     public virtual ICollection<Invitation> Invitations { get; } = new List<Invitation>();
+
+    
 }
