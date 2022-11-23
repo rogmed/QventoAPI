@@ -9,6 +9,7 @@ namespace QventoAPI
         {
             Qvento qvento = new Qvento();
 
+            qvento.QventoId = dto.QventoId;
             qvento.CreatedBy = dto.CreatedBy;
             qvento.Title = dto.Title;
             qvento.DateOfQvento = dto.DateOfQvento;
