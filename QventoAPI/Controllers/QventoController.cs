@@ -9,34 +9,20 @@ namespace QventoAPI.Controllers
     /// </summary>
     [ApiController]
     [EndpointGroupName("Qventos")]
-    [Route("/")]
+    [Route("api/qventos")]
     public class QventoController : ControllerBase
     {
-        IDbConnector mockDb = new MockDbConnector();
-        QventodbContext context = new QventodbContext();
         QventoMapper mapper = new QventoMapper();
         QventoFacade facade = new QventoFacade();
-
-        /// <summary>
-        ///    Ok message
-        /// </summary>
-        [HttpGet("")]
-        public ActionResult<int> GetOk()
-        {
-            string okMessage = "200 OK \n\n" +
-            "Github: https://github.com/rogmed/QventoAPI\n" +
-            "Swagger: https://qvento.azurewebsites.net/swagger/index.html\n";
-            return Ok(okMessage);
-        }
 
         /// <summary>
         ///    Retrieves Qvento based on its ID.
         /// </summary>
         /// <param name="qventoId">Qvento Id</param>
-        [HttpGet("qvento/{qventoId}")]
+        [HttpGet("{qventoId}")]
         public ActionResult<Qvento> GetQvento(int qventoId)
         {
-            var qvento = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
+            var qvento = facade.Get(qventoId);
 
             if (qvento == null)
                 NoContent();
@@ -47,10 +33,10 @@ namespace QventoAPI.Controllers
         /// <summary>
         ///    Retrieves all the Qventos
         /// </summary>
-        [HttpGet("qvento")]
+        [HttpGet("")]
         public ActionResult<List<Qvento>> GetQventos()
         {
-            var allQventos = context.Qventos;
+            var allQventos = facade.GetAll();
 
             if (allQventos == null)
                 NoContent();
@@ -59,24 +45,10 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        ///    ONLY FOR TESTING. Retrieves some fake Qventos not from database.
-        /// </summary>
-        [HttpGet("all-qventos")]
-        public ActionResult<List<Qvento>> GetFakeQventos()
-        {
-            var allQventos = mockDb.FindAll();
-
-            if (allQventos == null)
-                return NoContent();
-
-            return Ok(allQventos);
-        }
-
-        /// <summary>
         ///    POST new Qvento
         /// </summary>
         /// <param name="dto">qventoDto</param>
-        [HttpPost("qvento")]
+        [HttpPost("")]
         public ActionResult<QventoDto> PostQvento([FromBody] QventoDto dto)
         {
             var qvento = mapper.MaptoQvento(dto);
@@ -93,7 +65,7 @@ namespace QventoAPI.Controllers
         /// Delete a Qvento based on its ID
         /// </summary>
         /// <param name="qventoId">Qvento Id</param>
-        [HttpDelete("qvento/{qventoId}")]
+        [HttpDelete("{qventoId}")]
         public ActionResult<bool> Delete(int qventoId)
         {
             if (!facade.Delete(qventoId))
@@ -106,7 +78,7 @@ namespace QventoAPI.Controllers
         ///    Update an existing Qvento
         /// </summary>
         /// <param name="dto">Qvento Dto</param>
-        [HttpPut("qvento")]
+        [HttpPut("")]
         public ActionResult<Qvento> UpdateQvento([FromBody] QventoDto dto)
         {
             Qvento qvento = mapper.MaptoQvento(dto);

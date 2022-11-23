@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using QventoAPI.Data;
 
 namespace QventoAPI
@@ -6,6 +7,18 @@ namespace QventoAPI
     public class QventoFacade
     {
         QventodbContext context = new QventodbContext();
+
+        public Qvento? Get(int qventoId)
+        {
+            var qvento = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
+            return qvento;
+        }
+
+        public List<Qvento> GetAll()
+        {
+            var qventos = context.Qventos.ToList();
+            return qventos;
+        }
 
         public bool Save(ref Qvento qvento)
         {
@@ -46,7 +59,7 @@ namespace QventoAPI
         public bool Update(ref Qvento qvento)
         {
             int qventoId = qvento.QventoId;
-            Qvento entity = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
+            Qvento? entity = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
 
             if (entity == null)
                 return false;
