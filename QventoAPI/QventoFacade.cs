@@ -43,6 +43,20 @@ namespace QventoAPI
             return true;
         }
 
+        public bool Update(ref Qvento qvento)
+        {
+            int qventoId = qvento.QventoId;
+            Qvento entity = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
+
+            if (entity == null)
+                return false;
+
+            entity = qvento;
+            context.SaveChanges();
+
+            return true;
+        }
+
         private User? QventoCreator(Qvento qvento)
         {
             User? user = null;

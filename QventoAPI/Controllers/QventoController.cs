@@ -12,13 +12,13 @@ namespace QventoAPI.Controllers
     [Route("/")]
     public class QventoController : ControllerBase
     {
-        IDbConnector dBconnector = new MockDbConnector();
+        IDbConnector mockDb = new MockDbConnector();
         QventodbContext context = new QventodbContext();
         QventoMapper mapper = new QventoMapper();
         QventoFacade facade = new QventoFacade();
 
         /// <summary>
-        /// Ok message
+        ///    Ok message
         /// </summary>
         [HttpGet("")]
         public ActionResult<int> GetOk()
@@ -30,7 +30,7 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieves Qvento based on its ID.
+        ///    Retrieves Qvento based on its ID.
         /// </summary>
         /// <param name="qventoId">Qvento Id</param>
         [HttpGet("qvento/{qventoId}")]
@@ -45,7 +45,7 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieves all the Qventos
+        ///    Retrieves all the Qventos
         /// </summary>
         [HttpGet("qvento")]
         public ActionResult<List<Qvento>> GetQventos()
@@ -59,12 +59,12 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        /// ONLY FOR TESTING. Retrieves some fake Qventos not from database.
+        ///    ONLY FOR TESTING. Retrieves some fake Qventos not from database.
         /// </summary>
         [HttpGet("all-qventos")]
         public ActionResult<List<Qvento>> GetFakeQventos()
         {
-            var allQventos = dBconnector.FindAll();
+            var allQventos = mockDb.FindAll();
 
             if (allQventos == null)
                 return NoContent();
@@ -73,7 +73,7 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        /// POST new Qvento
+        ///    POST new Qvento
         /// </summary>
         /// <param name="dto">qventoDto</param>
         [HttpPost("qvento")]
@@ -93,13 +93,28 @@ namespace QventoAPI.Controllers
         /// Delete a Qvento based on its ID
         /// </summary>
         /// <param name="qventoId">Qvento Id</param>
-        [HttpDelete("qvento")]
+        [HttpDelete("qvento/{qventoId}")]
         public ActionResult<bool> Delete(int qventoId)
         {
             if (!facade.Delete(qventoId))
                 return NoContent();
 
             return Ok();
+        }
+
+        /// <summary>
+        ///    Update an existing Qvento
+        /// </summary>
+        /// <param name="dto">Qvento Dto</param>
+        [HttpPut("qvento")]
+        public ActionResult<Qvento> UpdateQvento([FromBody] QventoDto dto)
+        {
+            Qvento qvento = mapper.MaptoQvento(dto);
+
+            if (!facade.Update(ref qvento))
+                return NoContent();
+
+            return Ok(qvento);
         }
     }
 }
