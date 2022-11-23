@@ -1,12 +1,8 @@
-﻿using QventoAPI.Data;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace QventoAPI
+namespace QventoAPI.Data
 {
-    public interface IDbConnector {
-        public Qvento? FindQvento(int qventoId);
-        public List<Qvento> FindAll();
-    }
-    public class MockDbConnector : IDbConnector
+    public class MockContext
     {
         List<Qvento> qventos = new List<Qvento>()
         {
@@ -55,16 +51,25 @@ namespace QventoAPI
             }
         };
 
+        public DbSet<Invitation> Invitations { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public DbSet<Qvento> Qventos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public DbSet<User> Users { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public Qvento? FindQvento(int qventoId)
         {
             Qvento? qvento = qventos.Find(x => x.QventoId.Equals(qventoId));
-            
+
             return qvento;
         }
 
         public List<Qvento> FindAll()
         {
             return qventos;
+        }
+
+        public void SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }
