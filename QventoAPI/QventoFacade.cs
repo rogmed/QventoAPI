@@ -70,6 +70,14 @@ namespace QventoAPI
             return true;
         }
 
+        public List<Qvento> GetByUser(int userId)
+        {
+            var qventos = context.Qventos.Where(
+                x => x.CreatedBy == userId).ToList();
+
+            return qventos;
+        }
+
         private User? QventoCreator(Qvento qvento)
         {
             User? user = null;
