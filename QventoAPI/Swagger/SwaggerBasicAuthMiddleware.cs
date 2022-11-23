@@ -15,7 +15,7 @@ namespace QventoAPI
         {
             if (context.Request.Path.StartsWithSegments("/swagger"))
             {
-                string authHeader = context.Request.Headers["Authorization"];
+                string? authHeader = context.Request.Headers["Authorization"];
                 if (authHeader != null && authHeader.StartsWith("Basic "))
                 {
                     // Get the credentials from request header

@@ -57,7 +57,7 @@ namespace QventoAPI
 
         public Qvento? FindQvento(int qventoId)
         {
-            Qvento qvento = qventos.Find(x => x.QventoId.Equals(qventoId));
+            Qvento? qvento = qventos.Find(x => x.QventoId.Equals(qventoId));
             
             return qvento;
         }
