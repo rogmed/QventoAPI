@@ -11,7 +11,7 @@ namespace QventoAPI.Controllers
     [Route("api/test")]
     public class TestController : ControllerBase
     {
-        IDbConnector dBconnector = new MockDbConnector();
+        MockContext dBconnector = new MockContext();
 
         /// <summary>
         /// Ok message

@@ -1,6 +1,4 @@
-﻿using QventoAPI.Data;
-
-namespace QventoAPI.Dto
+﻿namespace QventoAPI.Dto
 {
     public class UserDto
     {

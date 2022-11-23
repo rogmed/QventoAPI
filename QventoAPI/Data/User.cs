@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace QventoAPI.Data;
+﻿namespace QventoAPI.Data;
 
 public partial class User
 {
