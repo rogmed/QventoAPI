@@ -21,7 +21,7 @@ jobs:
           enable-AzPSSession: true 
      
         - run: |
-            Get-AzVM -ResourceGroupName "ResourceGroup11"
+            Get-AzVM -ResourceGroupName "ProyectoDAM"
 
       - uses: actions/checkout@v2
 

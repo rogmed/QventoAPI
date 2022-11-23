@@ -24,6 +24,15 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+          enable-AzPSSession: true 
+     
+        - run: |
+            Get-AzVM -ResourceGroupName "ProyectoDAM"
         
       - name: Test with the dotnet CLI
         run: dotnet test
