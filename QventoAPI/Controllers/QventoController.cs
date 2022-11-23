@@ -1,15 +1,17 @@
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using QventoAPI.Data;
 using QventoAPI.Dto;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace QventoAPI.Controllers
 {
     /// <summary>
     ///   Public API controller for Qventos
     /// </summary>
+    [Route("api/qventos")]
     [ApiController]
     [EndpointGroupName("Qventos")]
-    [Route("api/qventos")]
     public class QventoController : ControllerBase
     {
         QventoMapper mapper = new QventoMapper();
@@ -87,6 +89,18 @@ namespace QventoAPI.Controllers
                 return NoContent();
 
             return Ok(qvento);
+        }
+
+        /// <summary>
+        ///    Get Qventos related to an User
+        /// </summary>
+        /// <param name="userId">UserId</param>
+        [HttpGet("user/{userId}")]
+        public ActionResult<List<Qvento>> GetByUser(int userId)
+        {
+            var qventos = facade.GetByUser(userId);
+
+            return Ok(qventos);
         }
     }
 }

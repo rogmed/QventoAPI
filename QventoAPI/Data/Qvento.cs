@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace QventoAPI.Data;
 
@@ -28,5 +26,5 @@ public partial class Qvento
 
     public virtual ICollection<Invitation> Invitations { get; } = new List<Invitation>();
 
-    
+
 }
