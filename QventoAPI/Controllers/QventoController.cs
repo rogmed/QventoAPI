@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using QventoAPI.Data;
 using QventoAPI.Dto;
+using QventoAPI.Facades;
+using QventoAPI.MAppers;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace QventoAPI.Controllers
@@ -22,7 +24,7 @@ namespace QventoAPI.Controllers
         /// </summary>
         /// <param name="qventoId">Qvento Id</param>
         [HttpGet("{qventoId}")]
-        public ActionResult<Qvento> GetQvento(int qventoId)
+        public ActionResult<Qvento> Get(int qventoId)
         {
             var qvento = facade.Get(qventoId);
 
@@ -36,7 +38,7 @@ namespace QventoAPI.Controllers
         ///    Retrieves all the Qventos
         /// </summary>
         [HttpGet("")]
-        public ActionResult<List<Qvento>> GetQventos()
+        public ActionResult<List<Qvento>> GetAll()
         {
             var allQventos = facade.GetAll();
 
@@ -51,7 +53,7 @@ namespace QventoAPI.Controllers
         /// </summary>
         /// <param name="dto">qventoDto</param>
         [HttpPost("")]
-        public ActionResult<QventoDto> PostQvento([FromBody] QventoDto dto)
+        public ActionResult<QventoDto> Post([FromBody] QventoDto dto)
         {
             var qvento = mapper.MaptoQvento(dto);
 
@@ -81,7 +83,7 @@ namespace QventoAPI.Controllers
         /// </summary>
         /// <param name="dto">Qvento Dto</param>
         [HttpPut("")]
-        public ActionResult<Qvento> UpdateQvento([FromBody] QventoDto dto)
+        public ActionResult<Qvento> Update([FromBody] QventoDto dto)
         {
             Qvento qvento = mapper.MaptoQvento(dto);
 
