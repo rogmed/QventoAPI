@@ -55,7 +55,7 @@ namespace QventoAPI.Controllers
         ///    Login
         /// </summary>
         /// <param name="dto">Credentials Dto</param>
-        [HttpGet("login")]
+        [HttpPost("login")]
         public ActionResult<HttpResponse> Login(CredentialsDto dto)
         {
             if (!facade.Login(dto))
