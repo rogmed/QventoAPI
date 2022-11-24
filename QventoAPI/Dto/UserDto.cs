@@ -1,4 +1,7 @@
-﻿namespace QventoAPI.Dto
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+
+namespace QventoAPI.Dto
 {
     public class UserDto
     {
@@ -14,4 +17,11 @@
 
         public string? Address { get; set; }
     }
+
+    public class NewUserDto : UserDto
+    {
+        [Required]
+        public string? PasswordHash { get; set; } = null!;
+    }
+
 }

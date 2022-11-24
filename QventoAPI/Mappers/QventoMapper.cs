@@ -1,7 +1,7 @@
 ﻿using QventoAPI.Data;
 using QventoAPI.Dto;
 
-namespace QventoAPI
+namespace QventoAPI.MAppers
 {
     public class QventoMapper
     {

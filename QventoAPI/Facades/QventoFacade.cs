@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using QventoAPI.Data;
 
-namespace QventoAPI
+namespace QventoAPI.Facades
 {
     public class QventoFacade
     {
@@ -32,15 +32,12 @@ namespace QventoAPI
             qvento.DateCreated = new DateTime(
                 now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
 
-            var entity = context.Qventos.Add(qvento);
+            var entity = context.Qventos.Add(qvento).Entity;
             context.SaveChanges();
 
-            if(entity == null)
-                return false;
+            qvento = entity;
 
-            qvento = entity.Entity;
-
-            return true;
+            return entity != null;
         }
 
         public bool Delete(int qventoId)
