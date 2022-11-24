@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QventoAPI.Data;
 using QventoAPI.Dto;
 using QventoAPI.Facades;
 using QventoAPI.Mappers;
+using System.Net;
 
 namespace QventoAPI.Controllers
 {
@@ -47,6 +49,19 @@ namespace QventoAPI.Controllers
             var savedUserDto = mapper.MapToDto(newUser);
 
             return Ok(savedUserDto);
+        }
+
+        /// <summary>
+        ///    Login
+        /// </summary>
+        /// <param name="dto">Credentials Dto</param>
+        [HttpGet("login")]
+        public ActionResult<HttpResponse> Login(CredentialsDto dto)
+        {
+            if (!facade.Login(dto))
+                return Unauthorized();
+
+            return Ok("web.html");
         }
     }
 }
