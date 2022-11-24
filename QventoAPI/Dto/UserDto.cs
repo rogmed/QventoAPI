@@ -24,4 +24,13 @@ namespace QventoAPI.Dto
         public string? PasswordHash { get; set; } = null!;
     }
 
+    public class CredentialsDto
+    {
+        [Required]
+        public string? Email { get; set; }
+
+        [Required]
+        public string? PasswordHash { get; set; }
+    }
+
 }

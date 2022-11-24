@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using QventoAPI.Data;
+using QventoAPI.Dto;
 
 namespace QventoAPI.Facades
 {
@@ -27,6 +28,18 @@ namespace QventoAPI.Facades
             user = savedEntity;
 
             return savedEntity != null;
+        }
+
+        public bool Login(CredentialsDto dto)
+        {
+            User? user = context.Users.SingleOrDefault(x => x.Email == dto.Email);
+            if (user == null)
+                return false;
+
+            if(user.PasswordHash == dto.PasswordHash)
+                return true;
+
+            return false;
         }
 
     }
