@@ -10,7 +10,7 @@ public partial class QventodbContext : DbContext
     private string? _connectionString;
     public QventodbContext()
     {
-        this._connectionString = Vault.connectionString;
+        this._connectionString = Environment.GetEnvironmentVariable("connectionString");
     }
 
     public QventodbContext(DbContextOptions<QventodbContext> options)
