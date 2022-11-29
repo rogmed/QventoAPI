@@ -1,6 +1,6 @@
 # QventoAPI
 API for Qvento app
-https://qvento.azurewebsites.net/
+https://qvento-api.azurewebsites.net/
 
 Swagger
-https://qvento.azurewebsites.net/swagger/index.html
+https://qvento-api.azurewebsites.net/swagger/index.html
