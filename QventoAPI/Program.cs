@@ -2,15 +2,26 @@ using QventoAPI;
 using QventoAPI.Swagger;
 using System.Reflection;
 using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var conn = Environment.GetEnvironmentVariable("AZURE_USERNAME");
-//var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("VaultUri"));
-//builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
+// KEY VAULT 
+SecretClientOptions options = new SecretClientOptions()
+{
+    Retry =
+        {
+            Delay= TimeSpan.FromSeconds(2),
+            MaxDelay = TimeSpan.FromSeconds(16),
+            MaxRetries = 5,
+            Mode = RetryMode.Exponential
+         }
+};
+var client = new SecretClient(new Uri(Environment.GetEnvironmentVariable("VaultUri")), new DefaultAzureCredential(), options);
 
-// Vault
-//var vaultTask = Vault.GetConnectionString();
+KeyVaultSecret secret = client.GetSecret("connectionString");
+Environment.SetEnvironmentVariable("connectionString", secret.Value);
 
 // Add services to the container.
 
@@ -45,8 +56,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-//vaultTask.Wait();
 
 app.Run();
 

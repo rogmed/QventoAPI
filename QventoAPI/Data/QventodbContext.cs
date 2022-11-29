@@ -10,7 +10,7 @@ public partial class QventodbContext : DbContext
     private string? _connectionString;
     public QventodbContext()
     {
-        this._connectionString = "Data Source=tcp:qvento.database.windows.net,1433;Initial Catalog=qvento-db;User Id=rogeliomdn@qvento;Password=Titojik18++";
+        this._connectionString = Environment.GetEnvironmentVariable("connectionString");
     }
 
     public QventodbContext(DbContextOptions<QventodbContext> options)
