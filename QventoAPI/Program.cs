@@ -18,7 +18,7 @@ SecretClientOptions options = new SecretClientOptions()
             Mode = RetryMode.Exponential
          }
 };
-var client = new SecretClient(new Uri(Environment.GetEnvironmentVariable("VaultUri")), new DefaultAzureCredential(), options);
+var client = new SecretClient(new Uri("https://qvento-vault.vault.azure.net/"), new DefaultAzureCredential(), options);
 
 KeyVaultSecret secret = client.GetSecret("connectionString");
 Environment.SetEnvironmentVariable("connectionString", secret.Value);
