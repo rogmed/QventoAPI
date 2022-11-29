@@ -1,5 +1,4 @@
 -- DATABASE
-USE qventodb;
 
 DROP TABLE IF EXISTS Invitations;
 DROP TABLE IF EXISTS Qventos;

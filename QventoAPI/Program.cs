@@ -1,11 +1,16 @@
 using QventoAPI;
 using QventoAPI.Swagger;
 using System.Reflection;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var conn = Environment.GetEnvironmentVariable("AZURE_USERNAME");
+//var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("VaultUri"));
+//builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
+
 // Vault
-var vaultTask = Vault.GetConnectionString();
+//var vaultTask = Vault.GetConnectionString();
 
 // Add services to the container.
 
@@ -41,7 +46,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-vaultTask.Wait();
+//vaultTask.Wait();
 
 app.Run();
 

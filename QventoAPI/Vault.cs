@@ -7,13 +7,13 @@ namespace QventoAPI
     public static class Vault
     {
         public static string? connectionString;
-        public static async Task GetConnectionString()
+        public static void GetConnectionString()
         {
             string keyVaultName = "QventoVault";
-            var kvUri = "https://" + keyVaultName + ".vault.azure.net";
+            var kvUri = "https://" + Environment.GetEnvironmentVariable("VaultUri") + ".vault.azure.net";
             var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
 
-            var secret = await client.GetSecretAsync("connectionString");
+            var secret = client.GetSecret("connectionString");
 
             connectionString = secret.Value.Value;
         }
