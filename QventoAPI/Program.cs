@@ -50,6 +50,8 @@ app.UseDeveloperExceptionPage();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+//Use static web files (by default in wwwroot)
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
