@@ -97,10 +97,22 @@ namespace QventoAPI.Controllers
         ///    Get Qventos related to an User
         /// </summary>
         /// <param name="userId">UserId</param>
-        [HttpGet("user/{userId}")]
-        public ActionResult<List<Qvento>> GetByUser(int userId)
+        [HttpGet("createdby/{userId}")]
+        public ActionResult<List<Qvento>> GetCreatedByUser(int userId)
         {
-            var qventos = facade.GetByUser(userId);
+            var qventos = facade.GetCreatedByUser(userId);
+
+            return Ok(qventos);
+        }
+
+        /// <summary>
+        ///    Get Qventos related to an User
+        /// </summary>
+        /// <param name="userId">UserId</param>
+        [HttpGet("relevant/{userId}")]
+        public ActionResult<List<Qvento>> GetRelevantUser(int userId)
+        {
+            var qventos = facade.GetRelevantToUser(userId);
 
             return Ok(qventos);
         }

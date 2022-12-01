@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using QventoAPI.Data;
+using System.Runtime.CompilerServices;
+using System.Xml;
 
 namespace QventoAPI.Facades
 {
@@ -69,12 +72,29 @@ namespace QventoAPI.Facades
             return true;
         }
 
-        public List<Qvento> GetByUser(int userId)
+        public List<Qvento> GetCreatedByUser(int userId)
         {
             var qventos = context.Qventos.Where(
                 x => x.CreatedBy == userId).ToList();
 
             return qventos;
+        }
+
+        public string GetRelevantToUser(int userId)
+        {
+            var qventos = context.Qventos.Where(
+                (x => (x.CreatedBy == userId || x.Invitations.Any(y => y.UserId == userId)) && x.Status == "A")
+                 ).ToList();
+
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Newtonsoft.Json.Formatting.Indented
+            };
+
+            string json = JsonConvert.SerializeObject(qventos, settings);
+
+            return json;
         }
 
         private User? QventoCreator(Qvento qvento)
