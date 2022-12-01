@@ -32,6 +32,8 @@ namespace QventoAPI.Facades
             qvento.DateCreated = new DateTime(
                 now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
 
+            qvento.Status = "A";
+
             var entity = context.Qventos.Add(qvento).Entity;
             context.SaveChanges();
 
