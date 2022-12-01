@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace QventoAPI.Data;
 
@@ -104,6 +101,10 @@ public partial class QventodbContext : DbContext
                 .IsFixedLength();
             entity.Property(e => e.Phone)
                 .HasMaxLength(25)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.TempToken)
+                .HasMaxLength(255)
                 .IsUnicode(false)
                 .IsFixedLength();
         });

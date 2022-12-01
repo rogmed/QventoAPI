@@ -16,6 +16,8 @@ public partial class User
 
     public string? Address { get; set; }
 
+    public string? TempToken { get; set; }
+
     public virtual ICollection<Invitation> Invitations { get; } = new List<Invitation>();
 
     public virtual ICollection<Qvento> Qventos { get; } = new List<Qvento>();
