@@ -106,13 +106,13 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        ///    Get Qventos related to an User
+        ///    Get Qventos related to an User provided a Temporary Token
         /// </summary>
-        /// <param name="userId">UserId</param>
-        [HttpGet("relevant/{userId}")]
-        public ActionResult<List<Qvento>> GetRelevantUser(int userId)
+        /// <param name="tempToken">TempToken</param>
+        [HttpGet("relevant/{tempToken}")]
+        public ActionResult<List<Qvento>> GetRelevantUser(string tempToken)
         {
-            var qventos = facade.GetRelevantToUser(userId);
+            var qventos = facade.GetRelevantToUser(tempToken);
 
             return Ok(qventos);
         }

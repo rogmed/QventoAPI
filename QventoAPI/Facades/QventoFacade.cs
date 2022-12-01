@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using QventoAPI.Data;
-using System.Runtime.CompilerServices;
-using System.Xml;
+using System.Reflection;
 
 namespace QventoAPI.Facades
 {
@@ -80,16 +78,20 @@ namespace QventoAPI.Facades
             return qventos;
         }
 
-        public string GetRelevantToUser(int userId)
+        public string GetRelevantToUser(string tempToken)
         {
+            var user = context.Users.FirstOrDefault(x => x.TempToken == tempToken);
+
             var qventos = context.Qventos.Where(
-                (x => (x.CreatedBy == userId || x.Invitations.Any(y => y.UserId == userId)) && x.Status == "A")
+                (x => (x.CreatedBy == user.UserId || x.Invitations.Any(y => y.UserId == user.UserId)) && x.Status == "A")
                  ).ToList();
 
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
+                ContractResolver = new CustomResolver(),
+                PreserveReferencesHandling = PreserveReferencesHandling.None,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                Formatting = Newtonsoft.Json.Formatting.Indented
+                Formatting = Formatting.Indented
             };
 
             string json = JsonConvert.SerializeObject(qventos, settings);
@@ -112,5 +114,20 @@ namespace QventoAPI.Facades
 
             return user;
         }
+    }
+}
+
+class CustomResolver : DefaultContractResolver
+{
+    protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+    {
+        JsonProperty prop = base.CreateProperty(member, memberSerialization);
+
+        if (prop.DeclaringType == typeof(User))
+        {
+            prop.ShouldSerialize = obj => false;
+        }
+
+        return prop;
     }
 }

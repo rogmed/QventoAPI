@@ -15,6 +15,7 @@ CREATE TABLE Users
     PasswordHash VARCHAR(255) NOT NULL,
     Phone VARCHAR(25),
     Address VARCHAR(255),
+    TempToken varchar(255),
     PRIMARY KEY (UserId)
 );
 

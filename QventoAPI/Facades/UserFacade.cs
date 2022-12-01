@@ -42,5 +42,24 @@ namespace QventoAPI.Facades
             return false;
         }
 
+        public string? GenerateToken(CredentialsDto dto)
+        {
+            var user = context.Users.FirstOrDefault(x => x.Email.Equals(dto.Email));
+
+            if (user == null)
+                return null;
+
+            var allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var resultToken = new string(
+               Enumerable.Repeat(allChar, 16)
+               .Select(token => token[random.Next(token.Length)]).ToArray());
+
+            user.TempToken = resultToken.ToString();
+            context.SaveChanges();
+
+            return user.TempToken;
+        }
+
     }
 }
