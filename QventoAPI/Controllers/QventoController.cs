@@ -60,7 +60,7 @@ namespace QventoAPI.Controllers
             if (!facade.Save(ref qvento))
                 return UnprocessableEntity();
 
-            var outgoingDto = mapper.MapToDto(qvento);
+            var outgoingDto = mapper.MapToOutgoingDto(qvento);
 
             return Ok(outgoingDto);
         }
