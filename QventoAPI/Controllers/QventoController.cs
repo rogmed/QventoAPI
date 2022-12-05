@@ -81,14 +81,15 @@ namespace QventoAPI.Controllers
         /// <summary>
         ///    Update an existing Qvento
         /// </summary>
+        /// <param name="qventoId">Qvento Id</param>
         /// <param name="dto">Qvento Dto</param>
-        [HttpPut("")]
-        public ActionResult<Qvento> Update([FromBody] QventoDto dto)
+        [HttpPut("{qventoId}")]
+        public ActionResult<Qvento> Update(int qventoId, [FromBody] UpdateQventoDto dto)
         {
-            Qvento qvento = mapper.MaptoQvento(dto);
+            Qvento? qvento = null;
 
-            if (!facade.Update(ref qvento))
-                return NoContent();
+            if (!facade.Update(ref qvento, qventoId, dto))
+                return UnprocessableEntity();
 
             return Ok(qvento);
         }

@@ -17,13 +17,16 @@ namespace QventoAPI.Dto
         public string Status { get; set; } = null!;
 
     }
-    public class QventoDto
+    public class QventoDto : UpdateQventoDto
     {
         [Required]
         public int CreatedBy { get; set; }
+    }
 
+    public class UpdateQventoDto
+    {
         [Required]
-        public string Title { get; set; } = null!;
+        public string? Title { get; set; }
 
         [Required]
         public DateTime DateOfQvento { get; set; }
