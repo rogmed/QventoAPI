@@ -58,7 +58,9 @@ namespace QventoAPI.Controllers
             if (!facade.Login(dto))
                 return Unauthorized();
 
-            return Ok("web.html");
+            string tempToken = facade.GenerateToken(dto);
+
+            return Ok("web.html?temptoken=" + tempToken);
         }
     }
 }
