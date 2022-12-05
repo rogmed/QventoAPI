@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace QventoAPI.Dto
 {
@@ -12,16 +13,32 @@ namespace QventoAPI.Dto
         public DateTime DateCreated { get; set; }
 
         [Required]
-        [RegularExpression("[ACF]",
-     ErrorMessage = "Status must be A (Active), C (Cancelled) or F (Finished)")]
+        [RegularExpression("[ACF]", 
+            ErrorMessage = "Status must be A (Active), C (Cancelled) or F (Finished)")]
         public string Status { get; set; } = null!;
 
     }
-    public class QventoDto
+    public class QventoDto : NewQventoDto
     {
         [Required]
         public int CreatedBy { get; set; }
 
+        public QventoDto(int userId, NewQventoDto dto) : base()
+        {
+            this.CreatedBy = userId;
+            this.Title = dto.Title;
+            this.DateOfQvento = dto.DateOfQvento;
+            this.Description = dto.Description;
+            this.Location = dto.Location;
+        }
+
+        public QventoDto()
+        {
+        }
+    }
+
+    public class NewQventoDto
+    {
         [Required]
         public string Title { get; set; } = null!;
 
@@ -31,5 +48,9 @@ namespace QventoAPI.Dto
         public string? Description { get; set; }
 
         public string? Location { get; set; }
+
+        public NewQventoDto()
+        {
+        }
     }
 }
