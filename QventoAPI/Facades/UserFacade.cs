@@ -66,5 +66,14 @@ namespace QventoAPI.Facades
             return user.TempToken;
         }
 
+        public int Authenticate(string tempToken)
+        {
+            var user = context.Users.SingleOrDefault(x => x.TempToken.Equals(tempToken));
+
+            if (user == null)
+                return -1;
+
+            return user.UserId;
+        }
     }
 }

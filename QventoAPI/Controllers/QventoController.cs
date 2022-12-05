@@ -18,6 +18,7 @@ namespace QventoAPI.Controllers
     {
         QventoMapper mapper = new QventoMapper();
         QventoFacade facade = new QventoFacade(new QventodbContext());
+        UserFacade userFacade = new UserFacade(new QventodbContext());
 
         /// <summary>
         ///    Retrieves Qvento based on its ID.
@@ -51,11 +52,18 @@ namespace QventoAPI.Controllers
         /// <summary>
         ///    POST new Qvento
         /// </summary>
-        /// <param name="dto">qventoDto</param>
-        [HttpPost("")]
-        public ActionResult<QventoDto> Post([FromBody] QventoDto dto)
+        /// <param name="tempToken">User Temporary Token</param>
+        /// <param name="dto">Qvento Dto</param>
+        [HttpPost("{tempToken}")]
+        public ActionResult<QventoDto> Post(string tempToken, [FromBody] NewQventoDto dto)
         {
-            var qvento = mapper.MaptoQvento(dto);
+            int userId = userFacade.Authenticate(tempToken);
+            if (userId == -1)
+                return Unauthorized();
+
+            QventoDto authorizedDto = new QventoDto(userId, dto);
+
+            var qvento = mapper.MaptoQvento(authorizedDto);
 
             if (!facade.Save(ref qvento))
                 return UnprocessableEntity();
