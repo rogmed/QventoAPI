@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using QventoAPI.Data;
 using QventoAPI.Dto;
 using QventoAPI.Facades;
 using QventoAPI.Mappers;
-using System.Net;
 
 namespace QventoAPI.Controllers
 {
@@ -16,8 +13,8 @@ namespace QventoAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        UserFacade facade = new UserFacade();
         UserMapper mapper = new UserMapper();
+        UserFacade facade = new UserFacade(new QventodbContext());
 
         /// <summary>
         ///    Retrieves USer based on its ID.

@@ -8,7 +8,12 @@ namespace QventoAPI.Facades
 {
     public class UserFacade
     {
-        QventodbContext context = new QventodbContext();
+        QventodbContext context;
+
+        public UserFacade(QventodbContext context)
+        {
+            this.context = context;
+        }
 
         public User? Get(int userId)
         {

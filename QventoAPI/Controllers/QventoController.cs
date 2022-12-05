@@ -17,7 +17,7 @@ namespace QventoAPI.Controllers
     public class QventoController : ControllerBase
     {
         QventoMapper mapper = new QventoMapper();
-        QventoFacade facade = new QventoFacade();
+        QventoFacade facade = new QventoFacade(new QventodbContext());
 
         /// <summary>
         ///    Retrieves Qvento based on its ID.
