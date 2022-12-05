@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Mono.TextTemplating;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using QventoAPI.Data;
@@ -71,16 +70,16 @@ namespace QventoAPI.Facades
             if (entity == null)
                 return false;
 
-            if(!dto.Title.IsNullOrEmpty())
+            if (!dto.Title.IsNullOrEmpty())
                 entity.Title = dto.Title;
 
             if (!dto.Description.IsNullOrEmpty())
                 entity.Description = dto.Description;
 
-            if(dto.DateOfQvento != DateTime.MinValue)
+            if (dto.DateOfQvento != DateTime.MinValue)
                 entity.DateOfQvento = dto.DateOfQvento;
 
-            if(dto.Location.IsNullOrEmpty())
+            if (dto.Location.IsNullOrEmpty())
                 entity.Location = dto.Location;
 
             if (context.SaveChanges() == 1)

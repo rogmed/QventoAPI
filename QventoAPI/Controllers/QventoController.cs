@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using QventoAPI.Data;
 using QventoAPI.Dto;
@@ -9,7 +8,7 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 namespace QventoAPI.Controllers
 {
     /// <summary>
-    ///   Public API controller for Qventos
+    ///    Public API controller for Qventos
     /// </summary>
     [Route("api/qventos")]
     [ApiController]
@@ -66,7 +65,7 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        /// Delete a Qvento based on its ID
+        ///    Delete a Qvento based on its ID
         /// </summary>
         /// <param name="qventoId">Qvento Id</param>
         [HttpDelete("{qventoId}")]
