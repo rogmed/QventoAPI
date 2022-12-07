@@ -5,7 +5,7 @@ namespace QventoAPI.MAppers
 {
     public class QventoMapper
     {
-        public Qvento MaptoUpdateQvento(UpdateQventoDto dto)
+        public Qvento MaptoNewQvento(NewQventoDto dto)
         {
             Qvento qvento = new Qvento();
 
@@ -19,7 +19,7 @@ namespace QventoAPI.MAppers
 
         public Qvento MaptoQvento(QventoDto dto)
         {
-            Qvento qvento = MaptoUpdateQvento(dto);
+            Qvento qvento = MaptoNewQvento(dto);
 
             qvento.CreatedBy = dto.CreatedBy;
 

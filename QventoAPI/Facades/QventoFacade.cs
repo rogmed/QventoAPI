@@ -63,7 +63,7 @@ namespace QventoAPI.Facades
             return true;
         }
 
-        public bool Update(ref Qvento? qvento, int qventoId, UpdateQventoDto dto)
+        public bool Update(ref Qvento? qvento, int qventoId, NewQventoDto dto)
         {
             Qvento? entity = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
 
@@ -79,7 +79,7 @@ namespace QventoAPI.Facades
             if (dto.DateOfQvento != DateTime.MinValue)
                 entity.DateOfQvento = dto.DateOfQvento;
 
-            if (dto.Location.IsNullOrEmpty())
+            if (!dto.Location.IsNullOrEmpty())
                 entity.Location = dto.Location;
 
             if (context.SaveChanges() == 1)
