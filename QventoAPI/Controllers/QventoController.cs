@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using QventoAPI.Data;
 using QventoAPI.Dto;
@@ -9,7 +8,7 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 namespace QventoAPI.Controllers
 {
     /// <summary>
-    ///   Public API controller for Qventos
+    ///    Public API controller for Qventos
     /// </summary>
     [Route("api/qventos")]
     [ApiController]
@@ -74,7 +73,7 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        /// Delete a Qvento based on its ID
+        ///    Delete a Qvento based on its ID
         /// </summary>
         /// <param name="qventoId">Qvento Id</param>
         [HttpDelete("{qventoId}")]
@@ -89,14 +88,15 @@ namespace QventoAPI.Controllers
         /// <summary>
         ///    Update an existing Qvento
         /// </summary>
+        /// <param name="qventoId">Qvento Id</param>
         /// <param name="dto">Qvento Dto</param>
-        [HttpPut("")]
-        public ActionResult<Qvento> Update([FromBody] QventoDto dto)
+        [HttpPut("{qventoId}")]
+        public ActionResult<Qvento> Update(int qventoId, [FromBody] NewQventoDto dto)
         {
-            Qvento qvento = mapper.MaptoQvento(dto);
+            Qvento? qvento = null;
 
-            if (!facade.Update(ref qvento))
-                return NoContent();
+            if (!facade.Update(ref qvento, qventoId, dto))
+                return UnprocessableEntity();
 
             return Ok(qvento);
         }

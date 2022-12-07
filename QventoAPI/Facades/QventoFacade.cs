@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using QventoAPI.Data;
+using QventoAPI.Dto;
 using System.Reflection;
 
 namespace QventoAPI.Facades
@@ -61,18 +63,32 @@ namespace QventoAPI.Facades
             return true;
         }
 
-        public bool Update(ref Qvento qvento)
+        public bool Update(ref Qvento? qvento, int qventoId, NewQventoDto dto)
         {
-            int qventoId = qvento.QventoId;
             Qvento? entity = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
 
             if (entity == null)
                 return false;
 
-            entity = qvento;
-            context.SaveChanges();
+            if (!dto.Title.IsNullOrEmpty())
+                entity.Title = dto.Title;
 
-            return true;
+            if (!dto.Description.IsNullOrEmpty())
+                entity.Description = dto.Description;
+
+            if (dto.DateOfQvento != DateTime.MinValue)
+                entity.DateOfQvento = dto.DateOfQvento;
+
+            if (!dto.Location.IsNullOrEmpty())
+                entity.Location = dto.Location;
+
+            if (context.SaveChanges() == 1)
+            {
+                qvento = entity;
+                return true;
+            }
+
+            return false;
         }
 
         public List<Qvento> GetCreatedByUser(int userId)

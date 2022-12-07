@@ -5,15 +5,23 @@ namespace QventoAPI.MAppers
 {
     public class QventoMapper
     {
-        public Qvento MaptoQvento(QventoDto dto)
+        public Qvento MaptoNewQvento(NewQventoDto dto)
         {
             Qvento qvento = new Qvento();
 
-            qvento.CreatedBy = dto.CreatedBy;
-            qvento.Title = dto.Title;
+            qvento.Title = dto.Title ?? "";
             qvento.DateOfQvento = dto.DateOfQvento;
             qvento.Description = dto.Description;
             qvento.Location = dto.Location;
+
+            return qvento;
+        }
+
+        public Qvento MaptoQvento(QventoDto dto)
+        {
+            Qvento qvento = MaptoNewQvento(dto);
+
+            qvento.CreatedBy = dto.CreatedBy;
 
             return qvento;
         }
