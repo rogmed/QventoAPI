@@ -1,11 +1,26 @@
-using QventoAPI;
 using QventoAPI.Swagger;
 using System.Reflection;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Azure.Core;
 
+// CORS
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://www.qvento.es",
+                                              "http://localhost:50680/")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowAnyOrigin();
+                      });
+});
 
 // KEY VAULT 
 SecretClientOptions options = new SecretClientOptions()
@@ -55,6 +70,9 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
+app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

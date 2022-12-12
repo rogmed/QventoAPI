@@ -35,14 +35,17 @@ namespace QventoAPI.Facades
             return savedEntity != null;
         }
 
-        public bool Login(CredentialsDto dto)
+        public bool Login(ref int userId, CredentialsDto dto)
         {
             User? user = context.Users.SingleOrDefault(x => x.Email == dto.Email);
             if (user == null)
                 return false;
 
             if(user.PasswordHash == dto.PasswordHash)
+            {
+                userId = user.UserId;
                 return true;
+            }
 
             return false;
         }
