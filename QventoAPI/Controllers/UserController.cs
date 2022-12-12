@@ -55,7 +55,8 @@ namespace QventoAPI.Controllers
         [HttpPost("login")]
         public ActionResult<HttpResponse> Login(CredentialsDto dto)
         {
-            if (!facade.Login(dto))
+            int userId = 0;
+            if (!facade.Login(ref userId, dto))
                 return Unauthorized();
 
             string? tempToken = facade.GenerateToken(dto);
