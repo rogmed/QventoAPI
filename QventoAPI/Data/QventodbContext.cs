@@ -50,8 +50,8 @@ public partial class QventodbContext : DbContext
         {
             entity.HasKey(e => e.QventoId).HasName("PK__Qventos__E2AF01DC08C5B5D3");
 
-            entity.Property(e => e.DateCreated).HasColumnType("date");
-            entity.Property(e => e.DateOfQvento).HasColumnType("date");
+            entity.Property(e => e.DateCreated).HasColumnType("datetime");
+            entity.Property(e => e.DateOfQvento).HasColumnType("datetime");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .IsUnicode(false)
