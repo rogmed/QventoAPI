@@ -38,17 +38,7 @@ namespace QventoAPI.Facades
 
         public bool Save(ref Qvento qvento)
         {
-            User? user = QventoCreator(qvento);
-            if (user == null)
-                return false;
-
-            qvento.CreatedByNavigation = user;
-
-            // TODO: simplify this
-            var now = DateTime.Now;
-            qvento.DateCreated = new DateTime(
-                now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
-
+            qvento.DateCreated = DateTime.Now;
             qvento.Status = "A";
 
             var entity = context.Qventos.Add(qvento).Entity;
