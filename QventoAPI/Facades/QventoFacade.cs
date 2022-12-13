@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using QventoAPI.Data;
@@ -16,10 +17,17 @@ namespace QventoAPI.Facades
             this.context = context;
         }
 
-        public Qvento? Get(int qventoId)
+        public string? Get(int qventoId)
         {
-            var qvento = context.Qventos.SingleOrDefault(x => x.QventoId == qventoId);
-            return qvento;
+            var qvento = context.Qventos
+                .Include(u => u.CreatedByNavigation)
+                .Include(i => i.Invitations)
+                .ThenInclude(u => u.User)
+                .SingleOrDefault(x => x.QventoId == qventoId);
+
+            string json = JsonConvert.SerializeObject(qvento, new JsonSerializerSettings { Formatting = Formatting.Indented });
+
+            return json;
         }
 
         public List<Qvento> GetAll()
@@ -103,19 +111,19 @@ namespace QventoAPI.Facades
         {
             var user = context.Users.FirstOrDefault(x => x.TempToken == tempToken);
 
-            var qventos = context.Qventos.Where(
-                (x => (x.CreatedBy == user.UserId || x.Invitations.Any(y => y.UserId == user.UserId)) && x.Status == "A")
-                 ).ToList();
+            var qventos = context.Qventos
+                .Include(u => u.CreatedByNavigation)
+                .Where((x => (x.CreatedBy == user.UserId || x.Invitations.Any(y => y.UserId == user.UserId)) && x.Status == "A")).ToList();
 
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                ContractResolver = new CustomResolver(),
-                PreserveReferencesHandling = PreserveReferencesHandling.None,
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                //ContractResolver = new CustomResolver(),
+                //PreserveReferencesHandling = PreserveReferencesHandling.None,
+                //ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 Formatting = Formatting.Indented
             };
 
-            string json = JsonConvert.SerializeObject(qventos, settings);
+            string json = JsonConvert.SerializeObject(qventos, new JsonSerializerSettings{ Formatting = Formatting.Indented });
 
             return json;
         }

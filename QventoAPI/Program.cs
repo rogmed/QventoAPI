@@ -3,6 +3,10 @@ using System.Reflection;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Azure.Core;
+using Microsoft.EntityFrameworkCore;
+
+// CORS
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // CORS
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
