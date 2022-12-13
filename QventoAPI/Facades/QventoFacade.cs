@@ -44,6 +44,7 @@ namespace QventoAPI.Facades
 
             qvento.CreatedByNavigation = user;
 
+            // TODO: simplify this
             var now = DateTime.Now;
             qvento.DateCreated = new DateTime(
                 now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
