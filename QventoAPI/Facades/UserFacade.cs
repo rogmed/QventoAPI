@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using QventoAPI.Data;
+﻿using QventoAPI.Data;
 using QventoAPI.Dto;
 
 namespace QventoAPI.Facades
