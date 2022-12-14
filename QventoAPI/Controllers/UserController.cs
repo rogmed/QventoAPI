@@ -36,12 +36,12 @@ namespace QventoAPI.Controllers
         /// </summary>
         /// <param name="dto">User Dto</param>
         [HttpPost]
-        public ActionResult<UserDto> Post(NewUserDto dto)
+        public ActionResult<NewUserDto> Post(NewUserDto dto)
         {
             var newUser = mapper.MapToNewUser(dto);
 
             if (!facade.Save(ref newUser))
-                return UnprocessableEntity();
+                return UnprocessableEntity(newUser);
 
             var savedUserDto = mapper.MapToDto(newUser);
 
