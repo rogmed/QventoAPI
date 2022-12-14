@@ -40,6 +40,9 @@ namespace QventoAPI.Controllers
         {
             var newUser = mapper.MapToNewUser(dto);
 
+            if (!facade.CheckIfEmailIsAvailable(dto.Email))
+                return Conflict(newUser);
+
             if (!facade.Save(ref newUser))
                 return UnprocessableEntity(newUser);
 
@@ -49,7 +52,7 @@ namespace QventoAPI.Controllers
         }
 
         /// <summary>
-        ///    Login
+        /// DEPRECATED Login
         /// </summary>
         /// <param name="dto">Credentials Dto</param>
         [HttpPost("login")]
