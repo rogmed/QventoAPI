@@ -1,4 +1,5 @@
-﻿using QventoAPI.Data;
+﻿using Humanizer;
+using QventoAPI.Data;
 using QventoAPI.Dto;
 
 namespace QventoAPI.Facades
@@ -20,10 +21,6 @@ namespace QventoAPI.Facades
 
         public bool Save(ref User user)
         {
-            var email = user.Email;
-            if (context.Users.Any(x => x.Email == email))
-                return false;
-
             var savedEntity = context.Users.Add(user).Entity;
             context.SaveChanges();
 
@@ -74,6 +71,11 @@ namespace QventoAPI.Facades
                 return -1;
 
             return user.UserId;
+        }
+
+        public bool CheckIfEmailIsAvailable(string? email)
+        {
+            return !context.Users.Any(x => x.Email == email);
         }
     }
 }
