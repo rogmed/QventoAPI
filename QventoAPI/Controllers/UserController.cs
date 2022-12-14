@@ -41,7 +41,7 @@ namespace QventoAPI.Controllers
             var newUser = mapper.MapToNewUser(dto);
 
             if (!facade.Save(ref newUser))
-                UnprocessableEntity();
+                return UnprocessableEntity();
 
             var savedUserDto = mapper.MapToDto(newUser);
 
