@@ -8,16 +8,27 @@ using System.Text;
 
 namespace QventoAPI.Controllers
 {
+    /// <summary>
+    ///    Public API for Qvento web login
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
         private UserFacade facade = new UserFacade(new Data.QventodbContext());
 
+        /// <summary>
+        ///    Try to login provided credentials with e-mail and password
+        /// </summary>
+        /// <param name="dto">Credentials Dto</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Login([FromBody] CredentialsDto dto)
         {
             int userId = 0;
+
+            if (facade.CheckIfEmailIsAvailable(dto.Email))
+                return UnprocessableEntity("E-mail not registered.");
 
             if (!facade.Login(ref userId, dto))
                 return Unauthorized();

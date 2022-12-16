@@ -17,7 +17,7 @@ namespace QventoAPI.Controllers
         UserFacade facade = new UserFacade(new QventodbContext());
 
         /// <summary>
-        ///    Retrieves USer based on its ID.
+        ///    Retrieves User based on its ID.
         /// </summary>
         /// <param name="userId">User Id</param>
         [HttpGet("{userId}")]
@@ -34,7 +34,7 @@ namespace QventoAPI.Controllers
         /// <summary>
         ///    Register new User
         /// </summary>
-        /// <param name="dto">User Dto</param>
+        /// <param name="dto">New User Dto</param>
         [HttpPost]
         public ActionResult<NewUserDto> Post(NewUserDto dto)
         {

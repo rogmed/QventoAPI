@@ -11,6 +11,8 @@ namespace QventoAPI.Dto
         public int UserId { get; set; }
 
         [Required]
+        [RegularExpression("[PAR]",
+            ErrorMessage = "Status must be P (Pending), A (Aaccepted) or R (Rejected)")]
         public string? Status { get; set; }
     }
 
