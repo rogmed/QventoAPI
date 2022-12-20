@@ -69,16 +69,16 @@ namespace QventoAPI.Facades
             if (entity == null)
                 return false;
 
-            if (!dto.Title.IsNullOrEmpty())
+            if (dto.Title != null)
                 entity.Title = dto.Title;
 
-            if (!dto.Description.IsNullOrEmpty())
+            if (dto.Description != null)
                 entity.Description = dto.Description;
 
             if (dto.DateOfQvento != DateTime.MinValue)
                 entity.DateOfQvento = dto.DateOfQvento;
 
-            if (!dto.Location.IsNullOrEmpty())
+            if (dto.Location != null)
                 entity.Location = dto.Location;
 
             if (context.SaveChanges() == 1)
