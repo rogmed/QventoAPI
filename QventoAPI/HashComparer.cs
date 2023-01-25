@@ -1,6 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using HashLib;
 using System.Text;
-using HashLib;
 
 namespace QventoAPI
 {

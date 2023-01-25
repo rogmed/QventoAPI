@@ -15,7 +15,7 @@ namespace QventoAPI.Controllers
         private InvitationFacade facade = new InvitationFacade(new Data.QventodbContext());
 
         /// <summary>
-        ///     Post a new Invitation given a dto with QventoId and UserId
+        ///    Post a new Invitation given a dto with QventoId and Email of an existing user
         /// </summary>
         /// <param name="dto">New Invitation Dto</param>
         /// <returns>Ok(invitation)</returns>

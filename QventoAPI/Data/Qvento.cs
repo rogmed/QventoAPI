@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 
 namespace QventoAPI.Data;
 

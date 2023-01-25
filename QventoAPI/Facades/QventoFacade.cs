@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using QventoAPI.Data;
@@ -114,7 +113,7 @@ namespace QventoAPI.Facades
                 Formatting = Formatting.Indented
             };
 
-            string json = JsonConvert.SerializeObject(qventos, new JsonSerializerSettings{ Formatting = Formatting.Indented });
+            string json = JsonConvert.SerializeObject(qventos, new JsonSerializerSettings { Formatting = Formatting.Indented });
 
             return json;
         }

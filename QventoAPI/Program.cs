@@ -1,9 +1,8 @@
-using QventoAPI.Swagger;
-using System.Reflection;
+using Azure.Core;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using Azure.Core;
-using Microsoft.EntityFrameworkCore;
+using QventoAPI.Swagger;
+using System.Reflection;
 
 // CORS
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";

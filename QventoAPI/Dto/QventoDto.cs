@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Reflection;
 
 namespace QventoAPI.Dto
 {
@@ -13,7 +12,7 @@ namespace QventoAPI.Dto
         public DateTime DateCreated { get; set; }
 
         [Required]
-        [RegularExpression("[ACF]", 
+        [RegularExpression("[ACF]",
             ErrorMessage = "Status must be A (Active), C (Cancelled) or F (Finished)")]
         public string Status { get; set; } = null!;
 

@@ -21,7 +21,7 @@ namespace QventoAPI.Mappers
         public User MapToNewUser(NewUserDto dto)
         {
             User user = new User();
-            
+
             user.Name = dto.Name;
             user.LastName = dto.LastName;
             user.Email = dto.Email;
