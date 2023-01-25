@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="QventoAPI.Data.Qvento">
+    <Position X="0.75" Y="3" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAgAEAAAAIAABQBAAAAAAAAAAAEAAAAAAE=</HashCode>
+      <FileName>Data\Qvento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Data.User">
+    <Position X="7.5" Y="3" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAQACAAAAAAAAAAgAwBAAAAAAACAAAAIAAAAAg=</HashCode>
+      <FileName>Data\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Data.Invitation">
+    <Position X="4.5" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAABIAAEAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Invitation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Dto.OutgoingQventoDto">
+    <Position X="0.75" Y="11.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Dto\QventoDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Dto.QventoDto">
+    <Position X="0.75" Y="9.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Dto\QventoDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Dto.NewQventoDto">
+    <Position X="0.75" Y="6.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAEAAAAIAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dto\QventoDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Dto.InvitationDto">
+    <Position X="4.5" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dto\InvitationDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Dto.NewInvitationDto">
+    <Position X="4.5" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dto\InvitationDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Dto.UserDto">
+    <Position X="7.5" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAwAAAAAAAACAAAAIAAAAAg=</HashCode>
+      <FileName>Dto\UserDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Dto.NewUserDto">
+    <Position X="7.5" Y="8.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAAAAAAAAAQAAAAAAAACAAAAIAAAAAg=</HashCode>
+      <FileName>Dto\UserDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QventoAPI.Dto.CredentialsDto">
+    <Position X="7" Y="11.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dto\UserDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
