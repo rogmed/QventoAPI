@@ -77,5 +77,10 @@ namespace QventoAPI.Facades
         {
             return !context.Users.Any(x => x.Email == email);
         }
+
+        internal User? findByEmail(int email)
+        {
+            return context.Users.SingleOrDefault(x => x.Email.Equals(email));
+        }
     }
 }

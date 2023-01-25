@@ -22,6 +22,6 @@ namespace QventoAPI.Dto
         public int QventoId { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string? Email { get; set; }
     }
 }
