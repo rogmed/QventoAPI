@@ -50,21 +50,5 @@ namespace QventoAPI.Controllers
 
             return Ok(savedUserDto);
         }
-
-        /// <summary>
-        /// DEPRECATED Login
-        /// </summary>
-        /// <param name="dto">Credentials Dto</param>
-        [HttpPost("login")]
-        public ActionResult<HttpResponse> Login(CredentialsDto dto)
-        {
-            int userId = 0;
-            if (!facade.Login(ref userId, dto))
-                return Unauthorized();
-
-            string? tempToken = facade.GenerateToken(dto);
-
-            return Ok("web.html?temptoken=" + tempToken);
-        }
     }
 }

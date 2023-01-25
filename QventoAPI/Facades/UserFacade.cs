@@ -1,5 +1,4 @@
-﻿using Humanizer;
-using QventoAPI.Data;
+﻿using QventoAPI.Data;
 using QventoAPI.Dto;
 
 namespace QventoAPI.Facades
@@ -35,7 +34,7 @@ namespace QventoAPI.Facades
             if (user == null)
                 return false;
 
-            if(user.PasswordHash == dto.PasswordHash)
+            if (user.PasswordHash == dto.PasswordHash)
             {
                 userId = user.UserId;
                 return true;
