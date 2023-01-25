@@ -57,6 +57,18 @@ namespace QventoAPI.Facades
             return true;
         }
 
+        public int FindUserId(string email)
+        {
+            var user = context.Users.SingleOrDefault(x => x.Email.Equals(email));
+
+            if (user == null)
+            {
+                return 0;
+            }
+
+            return user.UserId;
+        }
+
         public bool Update(ref Invitation invitation, InvitationDto dto, ref MessageDto message)
         {
             if (invitation.Status != "P" && dto.Status == "P")

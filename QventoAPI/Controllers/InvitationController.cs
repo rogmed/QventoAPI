@@ -22,10 +22,17 @@ namespace QventoAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] NewInvitationDto dto)
         {
+            int userId = facade.FindUserId(dto.Email);
+
+            if (userId == 0)
+            {
+                return NoContent();
+            }
+
             Invitation invitation = new()
             {
                 QventoId = dto.QventoId,
-                UserId = dto.UserId
+                UserId = userId
             };
 
             MessageDto message = new MessageDto();
@@ -37,7 +44,7 @@ namespace QventoAPI.Controllers
             if (!facade.Save(ref invitation))
                 return UnprocessableEntity(invitation);
 
-            return Ok(invitation);
+            return Ok("Usuario invitado.");
         }
 
         /// <summary>
