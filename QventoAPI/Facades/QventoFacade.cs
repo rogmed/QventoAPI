@@ -55,7 +55,7 @@ namespace QventoAPI.Facades
             if (entity == null)
                 return false;
 
-            context.Qventos.Remove(entity);
+            entity.Status= "C";
             context.SaveChanges();
 
             return true;
